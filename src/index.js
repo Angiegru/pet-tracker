@@ -3,7 +3,8 @@ const petHelper = require('./db/models/pets');
 const path = require('path');
 const express = require('express');
 const app = express();
-const PORT = 8080;
+const PORT = 8089;
+// const Pets = re
 
 const publicDir = path.join(__dirname, '..', 'public');
 // here we are rendering the Static file 
@@ -17,17 +18,18 @@ app.use(express.json())
 const pets = [];
 
 
-app.get('/', (req, res) => {
-    res.send("Hello world!"). status(200);
+app.get('/test', (req, res) => {
+    console.log("hello?")
+    res.send("Hello world!").status(200);
 });
 
-app.get('/getpets', async (req, res) => {
-    res.send(pets).status(200);
-});
+// app.get('/getpets', async (req, res) => {
+//     res.send(pets).status(200);
+// });
 
 app.get('/getPets', async(req, res) => {
-    const data = await getHelper.getAllPets();
-    console.log(data);
+    const data = await petHelper.getAllPets();
+    console.log(data, "hello ? ");
     res.send(data).status(200);
 });
 
@@ -46,6 +48,6 @@ app.post('/addpets', (req,res) => {
     }
 })
 
-app.listen(8080, () => {
-    console.log('http://localhost:8080')
+app.listen(PORT, () => {
+    console.log('http://localhost:8089')
 });

@@ -1,6 +1,6 @@
 const petForm = document.querySelector('#pet-form');
 
-fetch('/getpets')
+fetch('/getPets')
     .then((res) => res.json())
     .then((pets) => console.log(pets))
 

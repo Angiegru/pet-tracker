@@ -16,7 +16,7 @@ class Pets {
   // This is just an example query, obviously you need to change it, but it shows you how to use knex.raw and dynamic values
   static async getAllPets() {
     try {
-      const query = `SELECT * FROM pet_tracker`;
+      const query = `SELECT * FROM pets`;
       const result = await knex.raw(query);
       console.log(result);
       return result.rows;
