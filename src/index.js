@@ -35,7 +35,8 @@ app.get('/getPets', async(req, res) => {
 
 
 //Create
-app.post('/addpets', (req,res) => {
+app.post('/addPets', async(req,res) => {
+    console.log(req.body, "Testing addpets");
     try {
         const {name, picture, species, isFriendly} = req.body;
         const currPet = {

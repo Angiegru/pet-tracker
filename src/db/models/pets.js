@@ -18,7 +18,6 @@ class Pets {
     try {
       const query = `SELECT * FROM pets`;
       const result = await knex.raw(query);
-      console.log(result);
       return result.rows;
     } catch (err) {
       console.error(err);
