@@ -1,19 +1,6 @@
 const knex = require('./knex');
-
+// references our tables!
 class Pets {
-  // This is just an example query, obviously you need to change it, but it shows you how to use knex.raw and dynamic values
-//   static async create(data) {
-//     try {
-//       const query = `INSERT INTO examples (data) values (?) returning *`;
-//       const { rows: [newToDo] } = await knex.raw(query, [data]);
-//       return newToDo;
-//     } catch (err) {
-//       console.error(err);
-//       return null;
-//     }
-//   }
-// }
-  // This is just an example query, obviously you need to change it, but it shows you how to use knex.raw and dynamic values
   static async getAllPets() {
     try {
       const query = `SELECT * FROM pets`;
@@ -22,6 +9,28 @@ class Pets {
     } catch (err) {
       console.error(err);
       return null;
+    }
+  }
+
+  static async postPets(pet_name, picture_url, species, is_friendly) {
+    try {
+        const query = `INSERT INTO pet_tracker (pet_name, picture_url, species, is_friendly) VALUES (?, ?, ?, ?) RETURNING *`;
+        const result = await knex.raw(query, [pet_name, picture_url, species, is_friendly]);
+        return result.rows;
+    } catch(err){
+      console.error(err);
+      return null;
+    }
+  }
+
+  static async deletePets(id) {
+    try {
+        const query = `DELETE FROM pet_tracker WHERE id = ?`;
+        const result = await knex.raw(query, [id]);
+        return result
+    } catch(err) {
+        console.log(err);
+        return null;
     }
   }
 }
