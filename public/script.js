@@ -60,8 +60,22 @@ const handleSubmit = (e) => {
     const formData = new FormData(e.target);
     const { pet_name, picture_url, species, is_friendly } = Object.fromEntries(formData);
 
-    listOfPets.appendChild(cardCreator({ pet_name, picture_url, species, is_friendly }));
+    const newPet = { pet_name, picture_url, species, is_friendly };
 
-
-}
+    fetch ('/addPets', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newPet),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // Handle the response as needed
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
 petForm.addEventListener('submit', handleSubmit);
