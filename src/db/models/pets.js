@@ -1,7 +1,7 @@
 const knex = require('./knex');
 // references our tables!
 class Pets {
-  static async getAllPets() {
+  static async getPets() {
     try {
       const query = `SELECT * FROM pets`;
       const result = await knex.raw(query);
@@ -12,7 +12,7 @@ class Pets {
     }
   }
 
-  static async postPets(pet_name, picture_url, species, is_friendly) {
+  static async addPets(pet_name, picture_url, species, is_friendly) {
     try {
         const query = `INSERT INTO pet_tracker (pet_name, picture_url, species, is_friendly) VALUES (?, ?, ?, ?) RETURNING *`;
         const result = await knex.raw(query, [pet_name, picture_url, species, is_friendly]);

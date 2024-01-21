@@ -23,28 +23,42 @@ app.get('/', (req, res) => {
 
 
 app.get('/getPets', async(req, res) => {
-    const data = await petHelper.getAllPets();
+    const data = await petHelper.getPets();
     console.log(data);
     res.send(data).status(200);
 });
 
 
 //Create
-app.post('/addPets', async(req,res) => {
-    console.log(req.body, "Testing addpets");
+app.post('/addPets', async (req, res) => {
     try {
-        const {pet_name, picture_url, species, is_friendly} = req.body;
-        const currPet = {
-            pet_name, picture_url, species, is_friendly
-        }
-        pets.push(currPet);
-        res.send(currPet).status(200);
-    }catch(err){
-        res.send(err).status(404);
-    }
-})
+        const { pet_name, picture_url, species, is_friendly } = req.body;
+        const data = await petHelper.addPets(pet_name, picture_url, species, is_friendly);
 
-app.delete('/deletepets:id', async (req, res) => {
+        // Log the response data before sending
+        console.log('Response Data:', data);
+
+        // Set Content-Type header to application/json
+        res.setHeader('Content-Type', 'application/json');
+        res.json(data);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+// app.post('/addPets', async(req,res) => {
+//     //console.log(req.body, "Testing addpets");
+//     try {
+//         const {pet_name, picture_url, species, is_friendly} = req.body;
+//         const data = await petHelper.addPets(pet_name, picture_url, species, is_friendly);
+//         console.log(data);
+//         res.send(data).status(200);
+//     } catch(err){
+//         res.send(err).status(404);
+//     }
+// });
+
+app.delete('/deletePets:id', async (req, res) => {
     const {id} = req.params;
     const data = await petHelper.deletePets(id);
     const foundPet = pets.findIndex(pet => Number(id) === pet.id);
