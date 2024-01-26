@@ -78,4 +78,5 @@ const handleSubmit = (e) => {
         console.error('Error:', error);
     });
 };
+
 petForm.addEventListener('submit', handleSubmit);

@@ -11,26 +11,26 @@
     <form id = "petForm">
         <h2> Add a new Pet!</h2>
         <label for="Pet Name">Pet Name: *</label>
-        <input type="text" id="pet_name" name="name" required />
+        <input type="text" id="pet_name" name="pet_name" required />
 
         <label for="Profile Picture">Profile Picture: *</label>
-        <input type="text" id="Profile Picture" name="picture" placeholder="Picture URL" required />
+        <input type="text" id="Profile Picture" name="picture_url" placeholder="Picture URL" required />
 
         <fieldset>
             <legend>Species</legend>
         <label for="Dog">Dog</label>
-        <input type="radio" id="Dog" name="species" />
+        <input type="radio" id="Dog" name="species" value="Dog" />
         
         <label for="Cat">Cat</label>
-        <input type="radio" id="Cat" name="Species Type" />
+        <input type="radio" id="Cat" name="species" value="Cat" />
         
         <label for="Bird">Bird</label>
-        <input type="radio" id="Bird" name="Species Type" />
+        <input type="radio" id="Bird" name="species" value="Bird" />
 
         </fieldset>
         
         <label for="friendlyCheckbox">Are they friendly?</label>
-        <input type="checkbox" id="friendlyCheckbox" name="friendlyCheckbox"/>
+        <input type="checkbox" id="friendlyCheckbox" name="is_friendly"/>
       
         <input type="submit" value="Add Pet!">
 

@@ -14,7 +14,7 @@ class Pets {
 
   static async addPets(pet_name, picture_url, species, is_friendly) {
     try {
-        const query = `INSERT INTO pet_tracker (pet_name, picture_url, species, is_friendly) VALUES (?, ?, ?, ?) RETURNING *`;
+        const query = `INSERT INTO pets (pet_name, picture_url, species, is_friendly) VALUES (?, ?, ?, ?) RETURNING *`;
         const result = await knex.raw(query, [pet_name, picture_url, species, is_friendly]);
         return result.rows;
     } catch(err){
@@ -25,7 +25,7 @@ class Pets {
 
   static async deletePets(id) {
     try {
-        const query = `DELETE FROM pet_tracker WHERE id = ?`;
+        const query = `DELETE FROM pets WHERE id = ?`;
         const result = await knex.raw(query, [id]);
         return result
     } catch(err) {
